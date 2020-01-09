@@ -1,4 +1,4 @@
-package com.doar.mais.doarMais.domains.enums;
+package com.doar.mais.doarMais.domains;
 
 import com.doar.mais.doarMais.domains.Campanha;
 
