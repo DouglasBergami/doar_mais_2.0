@@ -2,34 +2,56 @@ package com.doar.mais.doarMais.domains;
 
 import com.doar.mais.doarMais.domains.enums.EstadoCampanha;
 import com.doar.mais.doarMais.domains.enums.TipoSangue;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public abstract class Campanha {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
+public class Campanha implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private EstadoCampanha estadoCampanha;
+
+    private Integer estadoCampanha;
+
     private int qtdeSolicitada;
     private Integer qtdeAtual;
     private String finalidade;
     private String nomeCampanha;
-    private TipoSangue tipoSangue;
+
+    private Integer tipoSangue;
     private Date dataAbertura;
     private Date dataConclusao;
+    private char exclusiva;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Campanha() {
 
     }
 
-    public Campanha(EstadoCampanha estadoCampanha, int qtdeSolicitada, String finalidade, String nomeCampanha, TipoSangue tipoSangue, Date dataAbertura) {
-        this.estadoCampanha = estadoCampanha;
+    public Campanha(EstadoCampanha estadoCampanha, int qtdeSolicitada, String finalidade, String nomeCampanha, TipoSangue tipoSangue, Date dataAbertura, char exclusiva, Usuario usuario) {
+        this.estadoCampanha = (estadoCampanha == null) ? null : estadoCampanha.getCod();
         this.qtdeSolicitada = qtdeSolicitada;
         this.finalidade = finalidade;
         this.nomeCampanha = nomeCampanha;
-        this.tipoSangue = tipoSangue;
+        this.tipoSangue = (tipoSangue == null) ? null : tipoSangue.getCod();
         this.dataAbertura = dataAbertura;
+        this.exclusiva = exclusiva;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -40,11 +62,11 @@ public abstract class Campanha {
         this.id = id;
     }
 
-    public EstadoCampanha getEstadoCampanha() {
+    public Integer getEstadoCampanha() {
         return estadoCampanha;
     }
 
-    public void setEstadoCampanha(EstadoCampanha estadoCampanha) {
+    public void setEstadoCampanha(Integer estadoCampanha) {
         this.estadoCampanha = estadoCampanha;
     }
 
@@ -68,9 +90,7 @@ public abstract class Campanha {
         return finalidade;
     }
 
-    public void setFinalidade(String finalidade) {
-        this.finalidade = finalidade;
-    }
+    public void setFinalidade(String finalidade) {this.finalidade = finalidade;    }
 
     public String getNomeCampanha() {
         return nomeCampanha;
@@ -80,11 +100,9 @@ public abstract class Campanha {
         this.nomeCampanha = nomeCampanha;
     }
 
-    public TipoSangue getTipoSangue() {
-        return tipoSangue;
-    }
+    public Integer getTipoSangue() {return tipoSangue;}
 
-    public void setTipoSangue(TipoSangue tipoSangue) {
+    public void setTipoSangue(Integer tipoSangue) {
         this.tipoSangue = tipoSangue;
     }
 
@@ -103,6 +121,14 @@ public abstract class Campanha {
     public void setDataConclusao(Date dataConclusao) {
         this.dataConclusao = dataConclusao;
     }
+
+    public char getExclusiva() {return exclusiva;}
+
+    public void setExclusiva(char exclusiva) {this.exclusiva = exclusiva;}
+
+    public Usuario getUsuario() {return usuario;}
+
+    public void setUsuario(Usuario usuarioHemocentro) {this.usuario = usuario;}
 
     @Override
     public boolean equals(Object o) {

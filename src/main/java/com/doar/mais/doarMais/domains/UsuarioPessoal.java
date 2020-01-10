@@ -1,17 +1,21 @@
 package com.doar.mais.doarMais.domains;
 
 import com.doar.mais.doarMais.domains.enums.TipoSangue;
+import com.doar.mais.doarMais.domains.enums.TipoSexo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class UsuarioPessoal extends Usuario{
+
+    private static final long serialVersionUID = 1L;
 
     private int idade;
     private TipoSexo tipoSexo;
     private TipoSangue tipoSangue;
     private double peso;
-    private String telefone;
-    private String email;
     private Date ultimaDoacao;
 
     public UsuarioPessoal(){
@@ -56,22 +60,6 @@ public class UsuarioPessoal extends Usuario{
 
     public void setPeso(double peso) {
         this.peso = peso;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Date getUltimaDoacao() {
