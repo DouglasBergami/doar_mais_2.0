@@ -1,8 +1,12 @@
 package com.doar.mais.doarMais.domains;
 
-public class Cidade {
+import java.io.Serializable;
 
-    private Integer id;
+public class Cidade implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
     private String nome;
     private Estado estado;
 
@@ -10,18 +14,18 @@ public class Cidade {
         super();
     }
 
-    public Cidade(Integer id, String nome, Estado estado) {
+    public Cidade(Long id, String nome, Estado estado) {
         super();
         this.id = id;
         this.nome = nome;
         this.estado = estado;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

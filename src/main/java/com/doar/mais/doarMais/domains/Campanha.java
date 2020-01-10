@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
@@ -15,6 +17,7 @@ import java.util.Date;
 
 @Entity
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Campanha implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -90,7 +93,9 @@ public class Campanha implements Serializable {
         return finalidade;
     }
 
-    public void setFinalidade(String finalidade) {this.finalidade = finalidade;    }
+    public void setFinalidade(String finalidade) {
+        this.finalidade = finalidade;
+    }
 
     public String getNomeCampanha() {
         return nomeCampanha;
@@ -100,7 +105,9 @@ public class Campanha implements Serializable {
         this.nomeCampanha = nomeCampanha;
     }
 
-    public Integer getTipoSangue() {return tipoSangue;}
+    public Integer getTipoSangue() {
+        return tipoSangue;
+    }
 
     public void setTipoSangue(Integer tipoSangue) {
         this.tipoSangue = tipoSangue;
@@ -122,13 +129,21 @@ public class Campanha implements Serializable {
         this.dataConclusao = dataConclusao;
     }
 
-    public char getExclusiva() {return exclusiva;}
+    public char getExclusiva() {
+        return exclusiva;
+    }
 
-    public void setExclusiva(char exclusiva) {this.exclusiva = exclusiva;}
+    public void setExclusiva(char exclusiva) {
+        this.exclusiva = exclusiva;
+    }
 
-    public Usuario getUsuario() {return usuario;}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public void setUsuario(Usuario usuarioHemocentro) {this.usuario = usuario;}
+    public void setUsuario(Usuario usuarioHemocentro) {
+        this.usuario = usuario;
+    }
 
     @Override
     public boolean equals(Object o) {

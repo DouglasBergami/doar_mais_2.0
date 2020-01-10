@@ -1,8 +1,14 @@
 package com.doar.mais.doarMais.domains;
 
-import com.doar.mais.doarMais.domains.Usuario;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class UsuarioHemocentro {
+import javax.persistence.Entity;
+
+@Entity
+@JsonTypeName("UsuarioHemocentro")
+public class UsuarioHemocentro extends Usuario {
+
+    private static final long serialVersionUID = 1L;
 
     private Endereco endereco;
     private String cnpj;
@@ -13,8 +19,8 @@ public class UsuarioHemocentro {
 
     }
 
-    public UsuarioHemocentro(String usuario, String senha, Campanha campanha, Endereco endereco, String cnpj, String rsocial) {
-        //super(usuario, senha, campanha);
+    public UsuarioHemocentro(String usuario, String senha, Endereco endereco, String cnpj, String rsocial) {
+        super(usuario, senha);
         this.endereco = endereco;
         this.cnpj = cnpj;
         this.rsocial = rsocial;

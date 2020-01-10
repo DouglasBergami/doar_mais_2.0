@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-public class UsuarioPessoal extends Usuario{
+@JsonTypeName("UsuarioPessoal")
+public class UsuarioPessoal extends Usuario {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,17 +18,19 @@ public class UsuarioPessoal extends Usuario{
     private TipoSangue tipoSangue;
     private double peso;
     private Date ultimaDoacao;
+    private String nomeUsuario;
 
-    public UsuarioPessoal(){
+    public UsuarioPessoal() {
 
     }
 
-    public UsuarioPessoal(String usuario, String senha, int idade, TipoSexo tipoSexo, TipoSangue tipoSangue, double peso) {
+    public UsuarioPessoal(String usuario, String senha, int idade, TipoSexo tipoSexo, TipoSangue tipoSangue, double peso, String nomeUsuario) {
         super(usuario, senha);
         this.idade = idade;
         this.tipoSexo = tipoSexo;
         this.tipoSangue = tipoSangue;
         this.peso = peso;
+        this.nomeUsuario = nomeUsuario;
     }
 
     public int getIdade() {
@@ -70,4 +73,12 @@ public class UsuarioPessoal extends Usuario{
         this.ultimaDoacao = ultimaDoacao;
     }
 
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 }
