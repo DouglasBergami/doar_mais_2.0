@@ -1,13 +1,23 @@
 package com.doar.mais.doarMais.domains;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Entity
 public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull(message = "Nome da cidade obrigatório")
     private String nome;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
     private Estado estado;
 
     public Cidade() {

@@ -1,17 +1,33 @@
 package com.doar.mais.doarMais.domains;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Entity
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
     private Cidade cidade;
+
+    @NotNull(message = "Logradouro é obrigátorio")
     private String logradouro;
+
+    @NotNull(message = "Número é obrigátorio")
     private String numero;
     private String complemento;
+
+    @NotNull(message = "Bairro é obrigatório")
     private String bairro;
+
+    @NotNull(message = "Cep é obrigátorio")
     private String cep;
 
     public Endereco() {

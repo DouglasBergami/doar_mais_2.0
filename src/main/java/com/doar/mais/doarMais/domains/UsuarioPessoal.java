@@ -14,8 +14,8 @@ public class UsuarioPessoal extends Usuario {
     private static final long serialVersionUID = 1L;
 
     private int idade;
-    private TipoSexo tipoSexo;
-    private TipoSangue tipoSangue;
+    private Integer tipoSexo;
+    private Integer tipoSangue;
     private double peso;
     private Date ultimaDoacao;
     private String nomeUsuario;
@@ -27,8 +27,8 @@ public class UsuarioPessoal extends Usuario {
     public UsuarioPessoal(String usuario, String senha, int idade, TipoSexo tipoSexo, TipoSangue tipoSangue, double peso, String nomeUsuario) {
         super(usuario, senha);
         this.idade = idade;
-        this.tipoSexo = tipoSexo;
-        this.tipoSangue = tipoSangue;
+        this.tipoSexo = tipoSexo == null ? null : tipoSexo.getCod();
+        this.tipoSangue = tipoSangue == null ? null : tipoSangue.getCod();
         this.peso = peso;
         this.nomeUsuario = nomeUsuario;
     }
@@ -41,19 +41,19 @@ public class UsuarioPessoal extends Usuario {
         this.idade = idade;
     }
 
-    public TipoSexo getTipoSexo() {
+    public Integer getTipoSexo() {
         return tipoSexo;
     }
 
-    public void setTipoSexo(TipoSexo tipoSexo) {
+    public void setTipoSexo(Integer tipoSexo) {
         this.tipoSexo = tipoSexo;
     }
 
-    public TipoSangue getTipoSangue() {
+    public Integer getTipoSangue() {
         return tipoSangue;
     }
 
-    public void setTipoSangue(TipoSangue tipoSangue) {
+    public void setTipoSangue(Integer tipoSangue) {
         this.tipoSangue = tipoSangue;
     }
 

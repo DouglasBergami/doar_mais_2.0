@@ -3,6 +3,8 @@ package com.doar.mais.doarMais.domains;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @JsonTypeName("UsuarioHemocentro")
@@ -10,6 +12,8 @@ public class UsuarioHemocentro extends Usuario {
 
     private static final long serialVersionUID = 1L;
 
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     private String cnpj;
     private String rsocial;

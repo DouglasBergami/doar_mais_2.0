@@ -50,7 +50,6 @@ public class CargaInicial implements ApplicationRunner {
 
         Estado estado = new Estado(null, "São Paulo");
         Cidade cidade = new Cidade(null, "Campinas", estado);
-        estado.setCidades(Arrays.asList(cidade));
         estadoRepository.save(estado);
         cidadeRepository.save(cidade);
 
